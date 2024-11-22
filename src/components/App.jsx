@@ -4,10 +4,12 @@ import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import SignIn from "../Pages/SignIn/SignIn";
 import User from "../Pages/User/User";
+import { store } from "../redux/store";
+import { Provider } from "react-redux";
 
 const App = () => {
   return (
-    <div>
+    <Provider store={store}>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -17,7 +19,7 @@ const App = () => {
         </Routes>
         <Footer />
       </BrowserRouter>
-    </div>
+    </Provider>
   );
 };
 

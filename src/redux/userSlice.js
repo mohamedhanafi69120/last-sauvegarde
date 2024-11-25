@@ -1,21 +1,48 @@
+// import { createSlice } from "@reduxjs/toolkit";
+
+// const initialState = {
+//   username: "",
+//   firstname: "",
+//   lastname: "",
+// };
+
+// export const userSlice = createSlice({
+//   name: "user",
+//   initialState,
+//   reducers: {
+//     login: (state, action) => {
+//       state.username = action.payload.username;
+//       state.firstname = action.payload.firstname;
+//       state.lastname = action.payload.lastname;
+//     },
+//   },
+// });
+// export const { login } = userSlice.actions;
+// export default userSlice.reducer;
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  username: "",
-  firstname: "",
-  lastname: "",
+  value: 0,
 };
 
-export const userSlice = createSlice({
-  name: "user",
+export const counterSlice = createSlice({
+  name: "counter",
   initialState,
   reducers: {
-    login: (state, action) => {
-      state.username = action.payload.username;
-      state.firstname = action.payload.firstname;
-      state.lastname = action.payload.lastname;
+    increment: (state) => {
+      state.value += 1;
+    },
+    decrement: (state) => {
+      state.value -= 1;
+    },
+    incrementByAmount: (state, action) => {
+      state.value += action.payload;
     },
   },
 });
-export const { login } = userSlice.actions;
-export default userSlice.reducer;
+
+// Action creators are generated for each case reducer function
+export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+
+export default counterSlice.reducer;

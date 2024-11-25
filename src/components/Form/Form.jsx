@@ -8,6 +8,27 @@ const Form = () => {
   const [password, setPassword] = useState(""); // État pour le champ mot de passe
   const navigate = useNavigate(); // Redirection après connexion
 
+  const getuser = async (token) => {
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/v1/user/profile",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          body: null,
+        }
+      );
+
+      const data = await response.json();
+      console.log(data.body);
+    } catch (error) {
+      console.error("Erreur lors de la connexion :", error);
+    }
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault(); // Empêche le rechargement de la page
 
@@ -23,12 +44,12 @@ const Form = () => {
       const data = await response.json(); // Convertit la réponse en JSON
 
       if (response.ok) {
-        console.log("Token reçu :", data.token); // Affiche le token dans la console
-        localStorage.setItem("token", data.token); // Stocke le token pour des tests
+        localStorage.setItem("token", data.body.token); // Stocke le token pour des tests
         navigate("/User"); // Redirige l'utilisateur vers la page utilisateur
       } else {
         alert("Connexion échouée : " + data.message); // Affiche un message d'erreur
       }
+      getuser(data.body.token);
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);
     }

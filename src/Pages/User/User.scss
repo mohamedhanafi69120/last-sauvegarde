@@ -1,3 +1,52 @@
+// .header {
+//   text-align: center;
+//   margin-bottom: 20px;
+// }
+
+// .edit-user-info form {
+//   text-align: center;
+//   margin: 20px 0;
+// }
+
+// .edit-user-info label {
+//   display: block;
+//   margin: 10px 0;
+// }
+
+// input {
+//   padding: 8px;
+//   max-width: 300px;
+//   border: 1px solid #ccc;
+//   border-radius: 5px;
+//   margin-top: 5px;
+// }
+
+// button {
+//   padding: 10px 20px;
+//   margin: 10px;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+// }
+
+// .edit-button {
+//   background-color: #28a745;
+//   color: white;
+// }
+
+// .edit-user-info button {
+//   margin: 10px 5px;
+// }
+
+// button[type="button"] {
+//   background-color: #28a745;
+//   color: white;
+// }
+
+// button[type="button"]:nth-child(2) {
+//   background-color: #28a745;
+// }
+
 .header {
   text-align: center;
   margin-bottom: 20px;
@@ -15,7 +64,6 @@
 
 input {
   padding: 8px;
-  width: 80%;
   max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 5px;

@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../../assets/img/argentBankLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { Counter } from "../Counter";
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Nav = () => {
 
   return (
     <nav>
+      <Counter />
       <NavLink to="/" className="navLogo">
         <img src={Logo} alt="logo-argentbank" className="logo" />
         <h1 className="sr-only">Argent Bank</h1>

@@ -1,0 +1,95 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "API Transactions - Argent Bank"
+  description: "API pour gérer les transactions des utilisateurs d'Argent Bank."
+host: "localhost:3001"
+basePath: "/api"
+schemes:
+  - "http"
+paths:
+  /transactions:
+    get:
+      summary: "Liste des transactions"
+      description: "Retourne toutes les transactions d'un utilisateur pour le mois en cours."
+      responses:
+        200:
+          description: "Liste des transactions."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Transaction"
+        500:
+          description: "Erreur serveur."
+  /transactions/{id}:
+    get:
+      summary: "Détails d'une transaction"
+      description: "Retourne les détails d'une transaction spécifique."
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "string"
+          description: "Identifiant de la transaction."
+      responses:
+        200:
+          description: "Transaction trouvée."
+          schema:
+            $ref: "#/definitions/Transaction"
+        404:
+          description: "Transaction non trouvée."
+        500:
+          description: "Erreur serveur."
+    put:
+      summary: "Mettre à jour une transaction"
+      description: "Met à jour les détails d'une transaction spécifique."
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "string"
+          description: "Identifiant de la transaction."
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/TransactionUpdate"
+      responses:
+        200:
+          description: "Transaction mise à jour avec succès."
+        400:
+          description: "Requête invalide."
+        404:
+          description: "Transaction non trouvée."
+        500:
+          description: "Erreur serveur."
+definitions:
+  Transaction:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        description: "Identifiant unique de la transaction."
+      date:
+        type: "string"
+        format: "date-time"
+        description: "Date de la transaction."
+      amount:
+        type: "number"
+        description: "Montant de la transaction."
+      description:
+        type: "string"
+        description: "Description de la transaction."
+      accountId:
+        type: "string"
+        description: "Compte bancaire associé."
+
+  TransactionUpdate:
+    type: "object"
+    properties:
+      amount:
+        type: "number"
+        description: "Nouveau montant de la transaction."
+      description:
+        type: "string"
+        description: "Nouvelle description de la transaction."

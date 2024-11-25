@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import Account from "../../components/Account/Account";
 import AccountList from "../../datas/AccountList.json";
@@ -34,14 +35,17 @@ const User = () => {
 
     // Exemple de sauvegarde via API (optionnel)
     try {
-      const response = await fetch("http://localhost:3001/api/v1/user/update", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer your-token-here`, // Remplacez par un token valide
-        },
-        body: JSON.stringify(userInfo), // Envoyer les données mises à jour
-      });
+      const response = await fetch(
+        "http://localhost:3001/api/v1/user/profile",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer your-token-here`, // Remplacez par un token valide
+          },
+          body: JSON.stringify(userInfo), // Envoyer les données mises à jour
+        }
+      );
 
       if (response.ok) {
         console.log("User Info Saved:", userInfo);
@@ -58,11 +62,8 @@ const User = () => {
       <div className="header">
         {!isEditing ? (
           <>
-            <h1>
-              Welcome back
-              <br />
-              {userInfo.username} ({userInfo.firstname} {userInfo.lastname})!
-            </h1>
+            {/* Affichage uniquement du Welcome back suivi du username */}
+            <h1>Welcome back {userInfo.username}!</h1>
             <button className="edit-button" onClick={handleEditToggle}>
               Edit Name
             </button>
@@ -86,7 +87,7 @@ const User = () => {
                   type="text"
                   name="firstname"
                   value={userInfo.firstname}
-                  onChange={handleInputChange}
+                  disabled // Champ grisé
                 />
               </label>
               <label>
@@ -95,7 +96,7 @@ const User = () => {
                   type="text"
                   name="lastname"
                   value={userInfo.lastname}
-                  onChange={handleInputChange}
+                  disabled // Champ grisé
                 />
               </label>
               <div>
